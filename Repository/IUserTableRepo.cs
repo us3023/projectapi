@@ -8,8 +8,9 @@ namespace projectapi.Repository
 {
     public interface IUserTableRepo
     {
-        bool IsUniqueUser(string username);
+      //  bool IsUniqueUser(string username);
         UserTable Authenticate(string username, string password);
-        UserTable Register(string username, string password);
+        //UserTable Register(string username, string password);
+        UserTable CreateUser(UserTable user);
     }
 }

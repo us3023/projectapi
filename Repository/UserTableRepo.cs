@@ -46,14 +46,22 @@ namespace projectapi.Repository
             return user;
         }
 
-            public bool IsUniqueUser(string username)
-        {
-            throw new NotImplementedException();
-        }
+       
+            public UserTable CreateUser(UserTable user)
+            {
+                try
+                {
+                    _db.UserTable.Add(user);
+                    _db.SaveChanges();
+                    return user;
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
+            }
+        
 
-        public UserTable Register(string username, string password)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

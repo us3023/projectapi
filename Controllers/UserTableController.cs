@@ -31,5 +31,15 @@ namespace projectapi.Controllers
 
             return Ok(user);
         }
+        [HttpPost("CreateUser")]
+        public IActionResult CreateUser([FromBody] UserTable model)
+        {
+            var user = _userRepo.CreateUser(model);
+            if (user == null)
+            {
+                return BadRequest("Some error Occured");
+            }
+            return Ok(user);
+        }
     }
 }
