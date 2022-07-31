@@ -41,6 +41,8 @@ namespace projectapi.Repository
             throw new NotImplementedException();
         }
 
+
+
         UserAccountTable IUserAccountRepo.UpdateAccount(int id, UserAccountTable model)
         {
             var existingAcc = _db.UserAccountTable.FirstOrDefault(x => x.ID == id);
