@@ -20,7 +20,5 @@ namespace projectapi.Repository
         UserTable UpdateUser(int id, UserTable userTable);
 
         UserTable DeleteUser(int id);
-        UserTable Authenticate(string username, string password);
-        UserTable CreateUser(UserTable user);
     }
 }
