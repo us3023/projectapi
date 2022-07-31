@@ -106,10 +106,19 @@ namespace projectapi.Repository
             _db.SaveChanges();
 
             return existingUser;
-        }
-
-
-
-
+        }       
+            public UserTable CreateUser(UserTable user)
+            {
+                try
+                {
+                    _db.UserTable.Add(user);
+                    _db.SaveChanges();
+                    return user;
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
+            }
     }
 }

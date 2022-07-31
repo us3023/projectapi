@@ -8,7 +8,6 @@ namespace projectapi.Repository
 {
     public interface IUserTableRepo
     {
-        //bool IsUniqueUser(string username);
         UserTable Authenticate(string username, string password);
         UserTable CreateUser(UserTable user);
 
@@ -21,6 +20,7 @@ namespace projectapi.Repository
         UserTable UpdateUser(int id, UserTable userTable);
 
         UserTable DeleteUser(int id);
-
+        UserTable Authenticate(string username, string password);
+        UserTable CreateUser(UserTable user);
     }
 }

@@ -82,6 +82,7 @@ namespace projectapi.Controllers
             }
             return NotFound("User Not Found");
         }
+<<<<<<< HEAD
         //deleting a user
         [HttpDelete("Delete/{id:int}")]
         public IActionResult DeleteUser([FromRoute] int id)
@@ -95,5 +96,17 @@ namespace projectapi.Controllers
         }
 
 
+=======
+        [HttpPost("CreateUser")]
+        public IActionResult CreateUser([FromBody] UserTable model)
+        {
+            var user = _userRepo.CreateUser(model);
+            if (user == null)
+            {
+                return BadRequest("Some error Occured");
+            }
+            return Ok(user);
+        }
+>>>>>>> fb921abaae3d7496bb435fd61fd35834f5594860
     }
 }
