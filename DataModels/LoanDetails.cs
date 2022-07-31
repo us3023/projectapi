@@ -14,9 +14,7 @@ namespace projectapi.DataModels
         public int ID { get; set; }
        
         public int Elgible_Amount { get; set; }
-        public int Timeperiod { get; set; }
         public int ROI { get; set; }
-        
-        public int User_ID { get; set; }
+       
     }
 }

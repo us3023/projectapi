@@ -9,7 +9,7 @@ namespace projectapi.DataModels
 
     {   public int ID { get; set; }
 
-        public string Adhar_Number { get; set; }
+        public string Aadhar_Number { get; set; }
         public string PAN { get; set; }
         public string Voter_ID { get; set; }
         public string  Pay_Slip { get; set; }

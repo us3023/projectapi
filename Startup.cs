@@ -35,6 +35,7 @@ namespace projectapi
             services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Str")));
             services.AddScoped<IRepos,Repos>();
             services.AddScoped<IUserTableRepo, UserTableRepo>();
+            services.AddScoped<IUserAccountRepo, UserAccountRepo>();
 
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using projectapi.DataModels;
 
 namespace projectapi.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220731082436_New Change")]
+    partial class NewChange
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,7 +28,7 @@ namespace projectapi.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Aadhar_Number")
+                    b.Property<string>("Adhar_Number")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Collateral")
@@ -62,7 +64,7 @@ namespace projectapi.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("Current_Salary")
+                    b.Property<long>("Current_Sallary")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Emp_Type")
@@ -117,6 +119,9 @@ namespace projectapi.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<int>("Tenure_of_payment")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Timeperiod")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
@@ -180,6 +185,9 @@ namespace projectapi.Migrations
                     b.Property<string>("IFSC")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("User_ID")
+                        .HasColumnType("int");
+
                     b.HasKey("ID");
 
                     b.ToTable("UserBankDetails");
@@ -210,6 +218,9 @@ namespace projectapi.Migrations
                     b.Property<int?>("LoanDetailsID")
                         .HasColumnType("int");
 
+                    b.Property<int>("Loan_ID")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Next_Due_Date")
                         .HasColumnType("datetime2");
 
@@ -220,6 +231,9 @@ namespace projectapi.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("UserDetailsID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("User_ID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");

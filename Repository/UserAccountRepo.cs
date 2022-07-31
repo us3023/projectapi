@@ -21,7 +21,11 @@ namespace projectapi.Repository
 
         UserAccountTable IUserAccountRepo.CreateAccount(UserAccountTable model)
         {
-            throw new NotImplementedException();
+            _db.UserAccountTable.Add(model);
+
+            _db.SaveChanges();
+
+            return model;
         }
 
         List<UserAccountTable> IUserAccountRepo.ListAccounts()
