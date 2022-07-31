@@ -104,7 +104,6 @@ namespace projectapi.Repository
             var existingUser = _db.UserTable.FirstOrDefault(x => x.ID == id);
             _db.Remove(existingUser);
             _db.SaveChanges();
-
             return existingUser;
         }       
     }

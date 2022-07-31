@@ -19,7 +19,6 @@ namespace projectapi.Controllers
             _userRepo = userRepo;
         }
         [HttpPost("authenticate")]
-        // [Route("[controller]")]
         public IActionResult Authenticate([FromBody] UserTable model)
         {
             var user = _userRepo.Authenticate(model.Emai_ID, model.Password);
@@ -82,7 +81,6 @@ namespace projectapi.Controllers
             }
             return NotFound("User Not Found");
         }
-<<<<<<< HEAD
         //deleting a user
         [HttpDelete("Delete/{id:int}")]
         public IActionResult DeleteUser([FromRoute] int id)
@@ -94,9 +92,6 @@ namespace projectapi.Controllers
             }
             return Ok(existingUser);
         }
-
-
-=======
         [HttpPost("CreateUser")]
         public IActionResult CreateUser([FromBody] UserTable model)
         {
@@ -107,6 +102,5 @@ namespace projectapi.Controllers
             }
             return Ok(user);
         }
->>>>>>> fb921abaae3d7496bb435fd61fd35834f5594860
     }
 }
