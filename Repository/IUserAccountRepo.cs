@@ -13,5 +13,8 @@ namespace projectapi.Repository
         UserAccountTable CreateAccount(UserAccountTable model);
 
         UserAccountTable UpdateAccount(int id, UserAccountTable model);
+        UserAccountTable Getaccount(int id);
+
+         List< UserAccountTable> GetAllAcc();
     }
 }
