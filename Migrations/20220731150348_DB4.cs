@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace projectapi.Migrations
 {
-    public partial class NEW : Migration
+    public partial class DB4 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,12 +13,13 @@ namespace projectapi.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Adhar_Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PAN = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Voter_ID = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Pay_Slip = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Aadhar_Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    panId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    voterId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    salarySlip = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LOA = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NOC = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    saleAgreement = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Reg_Details = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Collateral = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -34,14 +35,14 @@ namespace projectapi.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Current_Sallary = table.Column<long>(type: "bigint", nullable: false),
-                    Prop_Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Estimated_Cost = table.Column<long>(type: "bigint", nullable: false),
+                    propertyLocation = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    employerName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    estimatedCost = table.Column<long>(type: "bigint", nullable: false),
                     Occupation = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Employer_Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Emp_Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Retirement_Age = table.Column<int>(type: "int", nullable: false),
-                    Property_Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    employmentType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    retire = table.Column<int>(type: "int", nullable: false),
+                    propertyName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -55,13 +56,12 @@ namespace projectapi.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Amount_Required = table.Column<long>(type: "bigint", nullable: false),
-                    Tenure_of_payment = table.Column<int>(type: "int", nullable: false),
+                    tenure = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     No_of_installments = table.Column<int>(type: "int", nullable: false),
                     Reference_Number = table.Column<long>(type: "bigint", nullable: false),
+                    loanAmount = table.Column<long>(type: "bigint", nullable: false),
                     Elgible_Amount = table.Column<int>(type: "int", nullable: false),
-                    Timeperiod = table.Column<int>(type: "int", nullable: false),
-                    ROI = table.Column<int>(type: "int", nullable: false),
-                    User_ID = table.Column<int>(type: "int", nullable: false)
+                    ROI = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -74,7 +74,6 @@ namespace projectapi.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    User_ID = table.Column<int>(type: "int", nullable: false),
                     Bank_Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Account_Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -89,21 +88,23 @@ namespace projectapi.Migrations
                 name: "UserTable",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    First_Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Middle_Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Last_Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Emai_ID = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    firstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    middleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    lastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    emailId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Phone_Number = table.Column<long>(type: "bigint", nullable: false),
+                    phNumber = table.Column<long>(type: "bigint", nullable: false),
                     DOB = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Nationality = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    nationality = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    adharNo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    panId = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserTable", x => x.ID);
+                    table.PrimaryKey("PK_UserTable", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -112,8 +113,6 @@ namespace projectapi.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    User_ID = table.Column<int>(type: "int", nullable: false),
-                    Loan_ID = table.Column<int>(type: "int", nullable: false),
                     Amount = table.Column<int>(type: "int", nullable: false),
                     Due_Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Next_Due_Date = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -122,7 +121,8 @@ namespace projectapi.Migrations
                     LoanDetailsID = table.Column<int>(type: "int", nullable: true),
                     UserBankID = table.Column<int>(type: "int", nullable: true),
                     IncomeDetailsID = table.Column<int>(type: "int", nullable: true),
-                    DocumentDetailsID = table.Column<int>(type: "int", nullable: true)
+                    DocumentDetailsID = table.Column<int>(type: "int", nullable: true),
+                    UserDetailsId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -151,6 +151,12 @@ namespace projectapi.Migrations
                         principalTable: "UserBankDetails",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_UserLoan_UserTable_UserDetailsId",
+                        column: x => x.UserDetailsId,
+                        principalTable: "UserTable",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -164,7 +170,7 @@ namespace projectapi.Migrations
                     Created_At = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Updated_At = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Signature = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserTableID = table.Column<int>(type: "int", nullable: true),
+                    UserTableId = table.Column<int>(type: "int", nullable: true),
                     UserLoanID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -177,10 +183,10 @@ namespace projectapi.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_UserAccountTable_UserTable_UserTableID",
-                        column: x => x.UserTableID,
+                        name: "FK_UserAccountTable_UserTable_UserTableId",
+                        column: x => x.UserTableId,
                         principalTable: "UserTable",
-                        principalColumn: "ID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -190,9 +196,9 @@ namespace projectapi.Migrations
                 column: "UserLoanID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserAccountTable_UserTableID",
+                name: "IX_UserAccountTable_UserTableId",
                 table: "UserAccountTable",
-                column: "UserTableID");
+                column: "UserTableId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserLoan_DocumentDetailsID",
@@ -213,6 +219,11 @@ namespace projectapi.Migrations
                 name: "IX_UserLoan_UserBankID",
                 table: "UserLoan",
                 column: "UserBankID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserLoan_UserDetailsId",
+                table: "UserLoan",
+                column: "UserDetailsId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -222,9 +233,6 @@ namespace projectapi.Migrations
 
             migrationBuilder.DropTable(
                 name: "UserLoan");
-
-            migrationBuilder.DropTable(
-                name: "UserTable");
 
             migrationBuilder.DropTable(
                 name: "DocumentDetails");
@@ -237,6 +245,9 @@ namespace projectapi.Migrations
 
             migrationBuilder.DropTable(
                 name: "UserBankDetails");
+
+            migrationBuilder.DropTable(
+                name: "UserTable");
         }
     }
 }

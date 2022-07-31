@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using projectapi.DataModels;
 using System;
 using System.Collections.Generic;
@@ -29,12 +30,26 @@ namespace projectapi.Repository
         }
         UserAccountTable IUserAccountRepo.Getaccount(int id)
         {
-            return _db.UserAccountTable.FirstOrDefault(x => x.ID == id);
+            var res = _db.UserAccountTable
+                .Include("UserLoan")
+                .Include("UserTable")
+                .FirstOrDefault(x => x.ID == id);
+
+            res.UserLoan = GetUserLoan(res.UserLoan.ID);
+
+            return res;
         }
         public List<UserAccountTable> GetAllAcc()
         {
-            var accs = _db.UserAccountTable.ToList();
-            return accs;
+            var result = _db.UserAccountTable.Include("UserLoan")
+                .Include("UserTable").ToList();
+
+            foreach(var res in result)
+            {
+                res.UserLoan = GetUserLoan(res.UserLoan.ID);
+            }
+
+            return result;
         }
         List<UserAccountTable> IUserAccountRepo.ListAccounts()
         {
@@ -58,5 +73,17 @@ namespace projectapi.Repository
             _db.SaveChanges();
             return existingAcc;
         }
+
+        public UserLoan GetUserLoan(int id)
+        {
+            return _db.UserLoan
+                 .Include("LoanDetails")
+                 .Include("UserBank")
+                 .Include("IncomeDetails")
+                 .Include("DocumentDetails")
+                 .Include("UserDetails")
+                 .Where(x => x.ID == id).FirstOrDefault();
+        }
+
     }
 }

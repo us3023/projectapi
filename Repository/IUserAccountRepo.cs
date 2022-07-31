@@ -15,6 +15,8 @@ namespace projectapi.Repository
         UserAccountTable UpdateAccount(int id, UserAccountTable model);
         UserAccountTable Getaccount(int id);
 
-         List< UserAccountTable> GetAllAcc();
+        public UserLoan GetUserLoan(int id);
+
+        List< UserAccountTable> GetAllAcc();
     }
 }

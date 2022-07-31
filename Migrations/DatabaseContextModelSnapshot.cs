@@ -65,7 +65,7 @@ namespace projectapi.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("Current_Salary")
+                    b.Property<long>("Current_Sallary")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Employer_Name")

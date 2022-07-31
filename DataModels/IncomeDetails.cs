@@ -8,7 +8,7 @@ namespace projectapi.DataModels
     public class IncomeDetails
     {
         public int ID { get; set; }
-        public long Current_Salary { get; set; }
+        public long Current_Sallary { get; set; }
         public string propertyLocation { get; set; }
         public string employerName { get; set; }
         public long estimatedCost { get; set; }

@@ -47,7 +47,7 @@ namespace projectapi.Controllers
                     },
                     IncomeDetails = new IncomeDetails
                     {
-                        Current_Salary = 23651320
+                        employerName="jhbibasd"
                     },
 
                 }
