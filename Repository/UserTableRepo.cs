@@ -46,14 +46,70 @@ namespace projectapi.Repository
             return user;
         }
 
-            public bool IsUniqueUser(string username)
+        public UserTable CreateUser(UserTable model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var user = _db.UserTable.FirstOrDefault(x => x.Emai_ID == model.Emai_ID);
+                if (user == null)
+                {
+                    return null;
+                }
+                _db.UserTable.Add(model);
+                _db.SaveChanges();
+                return user;
+                //return user;
+            }catch(Exception e)
+            {
+                return null;
+            }
+        }
+        public List<UserTable> GetAllUsers()
+        {
+            var users =  _db.UserTable.ToList();
+            return users;
+        }
+        public UserTable GetUser(int id)
+        {
+            return _db.UserTable.FirstOrDefault(x => x.ID == id);
+        } 
+        public bool AddUser(UserTable userTable)
+        {
+            var user = _db.UserTable.FirstOrDefault(x => x.Emai_ID == userTable.Emai_ID);
+            if (user != null)
+            {
+                return false;
+            }
+            _db.UserTable.Add(userTable);
+            _db.SaveChanges();
+            return true;
         }
 
-        public UserTable Register(string username, string password)
+        public UserTable UpdateUser( int id,UserTable userTable)
         {
-            throw new NotImplementedException();
+            var existingUser = _db.UserTable.FirstOrDefault(x => x.ID == id);
+            if(existingUser == null)
+            {
+                return null;
+            }
+            existingUser.Emai_ID = userTable.Emai_ID;
+            existingUser.DOB = userTable.DOB;
+            existingUser.Password = userTable.Password;
+            _db.SaveChanges();
+            return existingUser;
         }
+       
+        public UserTable DeleteUser( int id)
+        {
+            var existingUser = _db.UserTable.FirstOrDefault(x => x.ID == id);
+            _db.Remove(existingUser);
+            _db.SaveChanges();
+
+            return existingUser;
+        }
+
+
+
+
     }
 }
