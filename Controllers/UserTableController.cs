@@ -29,7 +29,6 @@ namespace projectapi.Controllers
             }
             return Ok(user);
         }
-
         [HttpPost("CreateUser")]
         public IActionResult CreateUser([FromBody] UserTable model)
         {
@@ -40,7 +39,6 @@ namespace projectapi.Controllers
             }
             return Ok(user);
         }
-
         [HttpGet("GetAll")]
         public JsonResult GetAllUsers()
         {

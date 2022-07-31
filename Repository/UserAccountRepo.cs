@@ -27,15 +27,36 @@ namespace projectapi.Repository
 
             return model;
         }
-
+        UserAccountTable IUserAccountRepo.Getaccount(int id)
+        {
+            return _db.UserAccountTable.FirstOrDefault(x => x.ID == id);
+        }
+        public List<UserAccountTable> GetAllAcc()
+        {
+            var accs = _db.UserAccountTable.ToList();
+            return accs;
+        }
         List<UserAccountTable> IUserAccountRepo.ListAccounts()
         {
             throw new NotImplementedException();
         }
 
+
+
         UserAccountTable IUserAccountRepo.UpdateAccount(int id, UserAccountTable model)
         {
-            throw new NotImplementedException();
+            var existingAcc = _db.UserAccountTable.FirstOrDefault(x => x.ID == id);
+            if (existingAcc == null)
+            {
+                return null;
+            }
+            existingAcc.Account_ID = model.Account_ID;
+            existingAcc.Status = model.Status;
+            existingAcc.Signature = model.Signature;
+            existingAcc.UserTable= model.UserTable;
+            existingAcc.UserLoan = model.UserLoan;
+            _db.SaveChanges();
+            return existingAcc;
         }
     }
 }

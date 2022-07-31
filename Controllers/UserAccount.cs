@@ -36,7 +36,7 @@ namespace projectapi.Controllers
                 UserTable = new UserTable { emailId = "31651"},
                 UserLoan = new UserLoan
                 {
-                    Amount=31356165,
+                    Amount = 31356165,
                     LoanDetails = new LoanDetails
                     {
                         Amount_Required = 32165432
@@ -69,6 +69,32 @@ namespace projectapi.Controllers
         //    }
         //    return Ok(res);
         //}
+        [HttpGet("Getaccount/{id:int}")]
+        public IActionResult Getaccount([FromRoute] int id)
+        {
+            var acc = _repo.Getaccount(id);
+            if (acc != null)
+            {
+                return Ok(acc);
+            }
+            return BadRequest("Account Not Found");
+        }
+        [HttpGet("GetAllAcc")]
+        public JsonResult GetAllAcc()
+        {
+            var accs = _repo.GetAllAcc();
+            return new JsonResult(accs);
+        }
+        [HttpPut("UpdateAccount/{id:int}")]
+        public IActionResult UpdateAcount([FromRoute] int id, [FromBody] UserAccountTable userAccountTable)
+        {
+            var existingAcc = _repo.UpdateAccount(id, userAccountTable);
+            if (existingAcc!= null)
+            {
+                return Ok(existingAcc);
+            }
+            return NotFound("Account Not Found");
+        }
 
     }
 }
