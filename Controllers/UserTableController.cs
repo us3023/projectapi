@@ -92,15 +92,5 @@ namespace projectapi.Controllers
             }
             return Ok(existingUser);
         }
-        [HttpPost("CreateUser")]
-        public IActionResult CreateUser([FromBody] UserTable model)
-        {
-            var user = _userRepo.CreateUser(model);
-            if (user == null)
-            {
-                return BadRequest("Some error Occured");
-            }
-            return Ok(user);
-        }
     }
 }
