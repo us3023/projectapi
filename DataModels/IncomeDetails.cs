@@ -9,14 +9,14 @@ namespace projectapi.DataModels
     {
         public int ID { get; set; }
         public long Current_Salary { get; set; }
-        public string Prop_Location { get; set; }
-        public string Name { get; set; }
-        public long Estimated_Cost { get; set; }
+        public string propertyLocation { get; set; }
+        public string employerName { get; set; }
+        public long estimatedCost { get; set; }
         public string Occupation { get; set; }
         public string Employer_Name { get; set; }
-         public string Emp_Type { get; set; }
-        public int Retirement_Age { get; set; }
-        public string Property_Name { get; set; }
+         public string employmentType { get; set; }
+        public int retire { get; set; }
+        public string propertyName { get; set; }
 
 
     }

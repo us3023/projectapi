@@ -24,7 +24,7 @@ namespace projectapi.Repository
 
         public UserTable Authenticate(string mail, string pass)
         {
-            var user = _db.UserTable.SingleOrDefault(x => x.Emai_ID == mail && x.Password == pass);
+            var user = _db.UserTable.SingleOrDefault(x => x.emailId == mail && x.Password == pass);
             if (user == null)
             {
                 return null;
@@ -36,7 +36,7 @@ namespace projectapi.Repository
             {
                 Subject = new ClaimsIdentity(new Claim[] {
 
-                    new Claim(ClaimTypes.Name,user.ID.ToString())
+                    new Claim(ClaimTypes.Name , user.Id.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -50,7 +50,7 @@ namespace projectapi.Repository
         {
             try
             {
-                var user = _db.UserTable.FirstOrDefault(x => x.Emai_ID == model.Emai_ID);
+                var user = _db.UserTable.FirstOrDefault(x => x.emailId == model.emailId);
                 if (user == null)
                 {
                     return null;
@@ -71,11 +71,11 @@ namespace projectapi.Repository
         }
         public UserTable GetUser(int id)
         {
-            return _db.UserTable.FirstOrDefault(x => x.ID == id);
+            return _db.UserTable.FirstOrDefault(x => x.Id == id);
         } 
         public bool AddUser(UserTable userTable)
         {
-            var user = _db.UserTable.FirstOrDefault(x => x.Emai_ID == userTable.Emai_ID);
+            var user = _db.UserTable.FirstOrDefault(x => x.emailId == userTable.emailId);
             if (user != null)
             {
                 return false;
@@ -87,12 +87,12 @@ namespace projectapi.Repository
 
         public UserTable UpdateUser( int id,UserTable userTable)
         {
-            var existingUser = _db.UserTable.FirstOrDefault(x => x.ID == id);
+            var existingUser = _db.UserTable.FirstOrDefault(x => x.Id == id);
             if(existingUser == null)
             {
                 return null;
             }
-            existingUser.Emai_ID = userTable.Emai_ID;
+            existingUser.emailId = userTable.emailId;
             existingUser.DOB = userTable.DOB;
             existingUser.Password = userTable.Password;
             _db.SaveChanges();
@@ -101,7 +101,7 @@ namespace projectapi.Repository
        
         public UserTable DeleteUser( int id)
         {
-            var existingUser = _db.UserTable.FirstOrDefault(x => x.ID == id);
+            var existingUser = _db.UserTable.FirstOrDefault(x => x.Id == id);
             _db.Remove(existingUser);
             _db.SaveChanges();
             return existingUser;

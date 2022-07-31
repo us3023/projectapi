@@ -8,19 +8,24 @@ namespace projectapi.DataModels
 {
     public class UserTable
     {
-        public string First_Name { get; set; }
+        public string firstName { get; set; } 
+        public int Id { get; set; } 
         //public bool Is_Admin { get; set; }
-        public string Middle_Name { get; set; }
-        public string Last_Name { get; set; }
-        public string Emai_ID { get; set; }
-        public string Password { get; set; }
-        public int ID { get; set; }
-        public long Phone_Number { get; set; }
-        public DateTime DOB { get; set; }
-        public string Gender { get; set; }
-        public string Nationality { get; set; }
+        public string middleName { get; set; } 
+        public string lastName { get; set; }     
+        public string emailId { get; set; } 
+        public string Password { get; set; } 
+        public long phNumber { get; set; } 
+        public DateTime DOB { get; set; } 
+        //public long  { get; set; }
+       // public DateTime DOB { get; set; }
+        public string gender { get; set; } 
+        public string nationality { get; set; } 
+
+        public string adharNo { get; set; } 
+        public string panId { get; set; }  
         [NotMapped]
-        public string Token { get; set; }
+        public string Token { get; set; } 
 
 
 

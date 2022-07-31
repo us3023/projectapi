@@ -10,12 +10,13 @@ namespace projectapi.DataModels
     {   public int ID { get; set; }
 
         public string Aadhar_Number { get; set; }
-        public string PAN { get; set; }
-        public string Voter_ID { get; set; }
-        public string  Pay_Slip { get; set; }
+        public string panId { get; set; }
+        public string voterId { get; set; }
+        public string salarySlip { get; set; }
         public string LOA { get; set; }
         public string NOC { get; set; }
 
+        public string saleAgreement { get; set; }
 
         public string Reg_Details { get; set; }
         public string Collateral { get; set; }

@@ -33,7 +33,7 @@ namespace projectapi.Controllers
                 Created_At=DateTime.Now,
                 Updated_At=DateTime.Now,
                 Signature="",
-                UserTable = new UserTable { Emai_ID = "31651"},
+                UserTable = new UserTable { emailId = "31651"},
                 UserLoan = new UserLoan
                 {
                     Amount=31356165,

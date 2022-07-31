@@ -21,7 +21,7 @@ namespace projectapi.Controllers
         [HttpPost("authenticate")]
         public IActionResult Authenticate([FromBody] UserTable model)
         {
-            var user = _userRepo.Authenticate(model.Emai_ID, model.Password);
+            var user = _userRepo.Authenticate(model.emailId, model.Password);
             if (user == null)
             {
                 return BadRequest(new { message = "Email or Password is incorrect" });

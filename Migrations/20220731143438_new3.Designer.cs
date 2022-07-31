@@ -10,8 +10,8 @@ using projectapi.DataModels;
 namespace projectapi.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220731093339_nwaa")]
-    partial class nwaa
+    [Migration("20220731143438_new3")]
+    partial class new3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -40,16 +40,19 @@ namespace projectapi.Migrations
                     b.Property<string>("NOC")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PAN")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Pay_Slip")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Reg_Details")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Voter_ID")
+                    b.Property<string>("panId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("salarySlip")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("saleAgreement")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("voterId")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
@@ -67,28 +70,28 @@ namespace projectapi.Migrations
                     b.Property<long>("Current_Salary")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("Emp_Type")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Employer_Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("Estimated_Cost")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Occupation")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Prop_Location")
+                    b.Property<string>("employerName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Property_Name")
+                    b.Property<string>("employmentType")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Retirement_Age")
+                    b.Property<long>("estimatedCost")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("propertyLocation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("propertyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("retire")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
@@ -118,8 +121,11 @@ namespace projectapi.Migrations
                     b.Property<long>("Reference_Number")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("Tenure_of_payment")
-                        .HasColumnType("int");
+                    b.Property<long>("loanAmount")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("tenure")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
@@ -151,14 +157,14 @@ namespace projectapi.Migrations
                     b.Property<int?>("UserLoanID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserTableID")
+                    b.Property<int?>("UserTableId")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
                     b.HasIndex("UserLoanID");
 
-                    b.HasIndex("UserTableID");
+                    b.HasIndex("UserTableId");
 
                     b.ToTable("UserAccountTable");
                 });
@@ -221,7 +227,7 @@ namespace projectapi.Migrations
                     b.Property<int?>("UserBankID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserDetailsID")
+                    b.Property<int?>("UserDetailsId")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
@@ -234,14 +240,14 @@ namespace projectapi.Migrations
 
                     b.HasIndex("UserBankID");
 
-                    b.HasIndex("UserDetailsID");
+                    b.HasIndex("UserDetailsId");
 
                     b.ToTable("UserLoan");
                 });
 
             modelBuilder.Entity("projectapi.DataModels.UserTable", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -249,31 +255,37 @@ namespace projectapi.Migrations
                     b.Property<DateTime>("DOB")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Emai_ID")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("First_Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Gender")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Last_Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Middle_Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nationality")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("Phone_Number")
+                    b.Property<string>("adharNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("emailId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("firstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("gender")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("lastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("middleName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("nationality")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("panId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("phNumber")
                         .HasColumnType("bigint");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("UserTable");
                 });
@@ -286,7 +298,7 @@ namespace projectapi.Migrations
 
                     b.HasOne("projectapi.DataModels.UserTable", "UserTable")
                         .WithMany()
-                        .HasForeignKey("UserTableID");
+                        .HasForeignKey("UserTableId");
 
                     b.Navigation("UserLoan");
 
@@ -313,7 +325,7 @@ namespace projectapi.Migrations
 
                     b.HasOne("projectapi.DataModels.UserTable", "UserDetails")
                         .WithMany()
-                        .HasForeignKey("UserDetailsID");
+                        .HasForeignKey("UserDetailsId");
 
                     b.Navigation("DocumentDetails");
 
