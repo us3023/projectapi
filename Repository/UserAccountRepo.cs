@@ -85,5 +85,10 @@ namespace projectapi.Repository
                  .Where(x => x.ID == id).FirstOrDefault();
         }
 
+        public UserAccountTable GetUserLoanByAccount(string id)
+        {
+            return _db.UserAccountTable.Where(x => x.Account_ID == id).FirstOrDefault();
+        }
+
     }
 }

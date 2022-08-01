@@ -57,7 +57,7 @@ namespace projectapi.Controllers
             return BadRequest("User Not Found");
         }
         //add a single user
-        [HttpPost]
+        [HttpPost("AddUser")]
         public IActionResult AddUser([FromBody] UserTable userTable)
         {
             var user = _userRepo.AddUser(userTable);

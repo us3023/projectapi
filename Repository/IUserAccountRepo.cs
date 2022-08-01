@@ -18,5 +18,7 @@ namespace projectapi.Repository
         public UserLoan GetUserLoan(int id);
 
         List< UserAccountTable> GetAllAcc();
+
+        public UserAccountTable GetUserLoanByAccount(string id);
     }
 }

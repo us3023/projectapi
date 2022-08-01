@@ -37,6 +37,17 @@ namespace projectapi
             services.AddScoped<IUserTableRepo, UserTableRepo>();
             services.AddScoped<IUserAccountRepo, UserAccountRepo>();
 
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", builder =>
+                {
+                    builder.AllowAnyHeader()
+                           .AllowAnyOrigin();
+                });
+            });
+
+
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
             var appSettings = appSettingsSection.Get<AppSettings>();
@@ -75,11 +86,12 @@ namespace projectapi
 
             
             app.UseRouting();
-            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            app.UseCors(options =>
+            {
+                options.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin();
+            });
             app.UseAuthentication();
             app.UseAuthorization();
-
-            
 
             app.UseEndpoints(endpoints =>
             {

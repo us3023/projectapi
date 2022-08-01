@@ -10,8 +10,8 @@ using projectapi.DataModels;
 namespace projectapi.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220801043154_newdb")]
-    partial class newdb
+    [Migration("20220801060623_new")]
+    partial class @new
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -254,6 +254,9 @@ namespace projectapi.Migrations
 
                     b.Property<DateTime>("DOB")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("Is_Admin")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");

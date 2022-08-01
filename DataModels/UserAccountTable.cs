@@ -19,7 +19,5 @@ namespace projectapi.DataModels
         public UserLoan UserLoan { get; set; }
         
 
-
-
     }
 }

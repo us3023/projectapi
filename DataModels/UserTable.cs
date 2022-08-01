@@ -9,8 +9,8 @@ namespace projectapi.DataModels
     public class UserTable
     {
         public string firstName { get; set; } 
-        public int Id { get; set; } 
-        //public bool Is_Admin { get; set; }
+        public int Id { get; set; }
+        public bool Is_Admin { get; set; }
         public string middleName { get; set; } 
         public string lastName { get; set; }     
         public string emailId { get; set; } 
@@ -26,7 +26,6 @@ namespace projectapi.DataModels
         public string panId { get; set; }  
         [NotMapped]
         public string Token { get; set; } 
-
 
 
     }

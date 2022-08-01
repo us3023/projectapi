@@ -21,7 +21,6 @@ namespace projectapi.Controllers
         }
 
         [HttpPost("CreateACCP")]
-
         public IActionResult CreateACCP ([FromBody] UserAccountTable userAccountTable)
         {
             var user = _repo.CreateAccount(userAccountTable);
@@ -34,44 +33,43 @@ namespace projectapi.Controllers
         }
 
         
+        //[HttpGet("Create")]
 
-        [HttpGet("Create")]
+        //public IActionResult CreateAccount()
+        //{
 
-        public IActionResult CreateAccount()
-        {
+        //    UserAccountTable model = new UserAccountTable { 
+        //        Account_ID="1235605",
+        //        Status="Approved",
+        //        Created_At=DateTime.Now,
+        //        Updated_At=DateTime.Now,
+        //        Signature="",
+        //        UserTable = new UserTable { emailId = "31651"},
+        //        UserLoan = new UserLoan
+        //        {
+        //            Amount = 31356165,
+        //            LoanDetails = new LoanDetails
+        //            {
+        //                Amount_Required = 32165432
+        //            },
+        //            UserBank = new UserBankDetails
+        //            {
+        //                Bank_Name = "xyz"
+        //            },
+        //            IncomeDetails = new IncomeDetails
+        //            {
+        //                employerName="jhbibasd"
+        //            },
 
-            UserAccountTable model = new UserAccountTable { 
-                Account_ID="1235605",
-                Status="Approved",
-                Created_At=DateTime.Now,
-                Updated_At=DateTime.Now,
-                Signature="",
-                UserTable = new UserTable { emailId = "31651"},
-                UserLoan = new UserLoan
-                {
-                    Amount = 31356165,
-                    LoanDetails = new LoanDetails
-                    {
-                        Amount_Required = 32165432
-                    },
-                    UserBank = new UserBankDetails
-                    {
-                        Bank_Name = "xyz"
-                    },
-                    IncomeDetails = new IncomeDetails
-                    {
-                        employerName="jhbibasd"
-                    },
-
-                }
-            };
-            var res = _repo.CreateAccount(model);
-            if (res == null)
-            {
-                return BadRequest("Some error Occured");
-            }
-            return Ok(res);
-        }
+        //        }
+        //    };
+        //    var res = _repo.CreateAccount(model);
+        //    if (res == null)
+        //    {
+        //        return BadRequest("Some error Occured");
+        //    }
+        //    return Ok(res);
+        //}
 
         //public IActionResult CreateAccount([FromBody] UserAccountTable model)
         //{
@@ -108,6 +106,19 @@ namespace projectapi.Controllers
             }
             return NotFound("Account Not Found");
         }
+
+
+        [HttpGet("GetByAccoutNumber/{id}")]
+        public IActionResult GetAccountByID([FromRoute] string id)
+        {
+            var accs = _repo.GetUserLoanByAccount(id);
+            if (accs == null)
+            {
+                return BadRequest("Loan ID Not Found");
+            }
+            return new JsonResult(accs);
+        }
+
 
     }
 }
