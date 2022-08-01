@@ -20,7 +20,20 @@ namespace projectapi.Controllers
             this._repo = repo;
         }
 
-        //[HttpPost("Create")]
+        [HttpPost("CreateACCP")]
+
+        public IActionResult CreateACCP ([FromBody] UserAccountTable userAccountTable)
+        {
+            var user = _repo.CreateAccount(userAccountTable);
+            if (user == null)
+            {
+                return BadRequest("Some error Occured");
+            }
+            return Ok(user);
+
+        }
+
+        
 
         [HttpGet("Create")]
 

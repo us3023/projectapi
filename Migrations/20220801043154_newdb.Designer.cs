@@ -10,8 +10,8 @@ using projectapi.DataModels;
 namespace projectapi.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220731150348_DB4")]
-    partial class DB4
+    [Migration("20220801043154_newdb")]
+    partial class newdb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
