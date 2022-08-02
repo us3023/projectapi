@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace projectapi.Repository
 {
+
+    /**
+     * Interface IRepos ( Repository )
+     * 
+     */
     public interface IRepos
     {
         List<UserAccountTable> GetData();

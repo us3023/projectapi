@@ -8,8 +8,15 @@ using System.Threading.Tasks;
 
 namespace projectapi.Repository
 {
+    /**
+     * UserAccountRepo inherits from IUserAccountRepo
+     */
     public class UserAccountRepo : IUserAccountRepo
     {
+
+        /**
+         * Dependency Injection for Db Context and for appsettings 
+         */
 
         private readonly DatabaseContext _db;
         private readonly AppSettings _appSettings;
@@ -20,6 +27,11 @@ namespace projectapi.Repository
             _appSettings = appsettings.Value;
         }
 
+        /**
+         * @params model of type UserAccountTable
+         * Creating a User account
+         * @return model 
+         */
         UserAccountTable IUserAccountRepo.CreateAccount(UserAccountTable model)
         {
             _db.UserAccountTable.Add(model);
@@ -28,6 +40,13 @@ namespace projectapi.Repository
 
             return model;
         }
+
+        /**
+         * @params id 
+         * getting a User account
+         * @return datamodel of type UserAccountTable
+         */
+
         UserAccountTable IUserAccountRepo.Getaccount(int id)
         {
             var res = _db.UserAccountTable
@@ -39,6 +58,11 @@ namespace projectapi.Repository
 
             return res;
         }
+        /**
+        * getting All Accounts
+        * @return datamodel of type UserAccountTable
+        */
+
         public List<UserAccountTable> GetAllAcc()
         {
             var result = _db.UserAccountTable.Include("UserLoan")
@@ -57,7 +81,11 @@ namespace projectapi.Repository
         }
 
 
-
+        /**
+        * @params id and model of type UserAccountTable
+        * Updating the account
+        * @return existing account model  of type UserAccountTable
+        */
         UserAccountTable IUserAccountRepo.UpdateAccount(int id, UserAccountTable model)
         {
             var existingAcc = _db.UserAccountTable.FirstOrDefault(x => x.ID == id);
@@ -74,6 +102,12 @@ namespace projectapi.Repository
             return existingAcc;
         }
 
+        /**
+        * @params id 
+        * getting UserLoan
+        * @return datamodel of type UserLoan
+        */
+
         public UserLoan GetUserLoan(int id)
         {
             return _db.UserLoan
@@ -85,10 +119,22 @@ namespace projectapi.Repository
                  .Where(x => x.ID == id).FirstOrDefault();
         }
 
+        /**
+        * @params id 
+        * getting a User Loan by account 
+        * @return datamodel of type UserAccountTable
+        */
+
         public UserAccountTable GetUserLoanByAccount(string id)
         {
             return _db.UserAccountTable.Where(x => x.Account_ID == id).FirstOrDefault();
         }
+
+        /**
+        * @params status  
+        * getting all the accounts using status
+        * @return list of type UserAccountTable
+        */
 
         public List<UserAccountTable> GetAllAccByStatus(string status)
         {

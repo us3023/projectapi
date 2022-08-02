@@ -47,7 +47,10 @@ namespace projectapi
                 });
             });
 
-
+            /**
+             * Authentication
+             * Using Token and Security key for Signing 
+             */
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
             var appSettings = appSettingsSection.Get<AppSettings>();

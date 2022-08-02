@@ -13,6 +13,11 @@ namespace projectapi.Controllers
     [ApiController]
     public class UserAccount : ControllerBase
     {
+        /**
+         * @params repo
+         * Dependency Injection
+         */
+
         private readonly IUserAccountRepo _repo;
 
         public UserAccount(IUserAccountRepo repo)
@@ -20,7 +25,14 @@ namespace projectapi.Controllers
             this._repo = repo;
         }
 
+        /**
+        * @params userAccountTable from body
+        * @return Ok type ( all the user )
+        * POST METHOD for creating account of the user
+        */
+
         [HttpPost("CreateACCP")]
+       
         public IActionResult CreateACCP ([FromBody] UserAccountTable userAccountTable)
         {
             var user = _repo.CreateAccount(userAccountTable);
@@ -32,7 +44,7 @@ namespace projectapi.Controllers
 
         }
 
-        
+
         //[HttpGet("Create")]
 
         //public IActionResult CreateAccount()
@@ -80,7 +92,18 @@ namespace projectapi.Controllers
         //    }
         //    return Ok(res);
         //}
+
+
+        /**
+         * @params  id from route
+         * GET METHOD for getting user account 
+         * @return ok type ( user account )
+         */
+
         [HttpGet("Getaccount/{id:int}")]
+        
+        
+
         public IActionResult Getaccount([FromRoute] int id)
         {
             var acc = _repo.Getaccount(id);
@@ -90,6 +113,12 @@ namespace projectapi.Controllers
             }
             return BadRequest("Account Not Found");
         }
+
+        /**
+         * GET METHOD for getting all the accounts 
+         * @return JSON
+         */
+
         [HttpGet("GetAllAcc")]
         public JsonResult GetAllAcc()
         {
@@ -97,6 +126,11 @@ namespace projectapi.Controllers
             return new JsonResult(accs);
         }
 
+        /**
+         * @params account status from route
+         * GET METHOD for getting all accounts according to status
+         * @retrun JSON
+         */
 
         [HttpGet("GetAllAccByStatus/{status}")]
         public JsonResult GetAllAccByStatus([FromRoute] string status)
@@ -106,7 +140,11 @@ namespace projectapi.Controllers
         }
 
 
-
+        /**
+         * @parmams id from route and userAccountTable from body
+         * PUT  METHOD for updatation of account
+         * @return ok type of existing account or NotFound 
+         */
 
         [HttpPut("UpdateAccount/{id:int}")]
         public IActionResult UpdateAcount([FromRoute] int id, [FromBody] UserAccountTable userAccountTable)
@@ -119,7 +157,11 @@ namespace projectapi.Controllers
             return NotFound("Account Not Found");
         }
 
-
+        /**
+         * @params id from route
+         * GET METHOD for getting account  using id
+         * @return JSON or BadRequest
+         */
         [HttpGet("GetByAccoutNumber/{id}")]
         public IActionResult GetAccountByID([FromRoute] string id)
         {

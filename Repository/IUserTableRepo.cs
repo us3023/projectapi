@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace projectapi.Repository
 {
+
+    /**
+    * INTERFACE IUserTableRepo ( Repository )
+    */
     public interface IUserTableRepo
     {
         UserTable Authenticate(string username, string password);

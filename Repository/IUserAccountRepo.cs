@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace projectapi.Repository
 {
+
+    /**
+     * INTERFACE IUSerAccount Repo 
+     */
     public interface IUserAccountRepo
     {
         List<UserAccountTable> ListAccounts();

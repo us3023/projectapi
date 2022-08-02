@@ -8,16 +8,32 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace projectapi.Controllers
-{
+{    
+    // API CONTROLLER FOR USER TABLE
+
     [Route("api/User")]
     [ApiController]
     public class UserTableController : ControllerBase
     {
+
+       /**
+        * @params userRepo Interface
+        * Dependency Injection for using IUserTable Repository
+        */
+
         private readonly IUserTableRepo _userRepo;
+       
+
         public UserTableController(IUserTableRepo userRepo)
         {
             _userRepo = userRepo;
         }
+
+        /**
+         * @params userTable model from  body
+         * POST METHOD for Authentication 
+         * @return OK type of user or Bad Request
+         */
         [HttpPost("authenticate")]
         public IActionResult Authenticate([FromBody] UserTable model)
         {
@@ -29,6 +45,13 @@ namespace projectapi.Controllers
             }
             return Ok(user);
         }
+
+        /**
+         * @params userTable model 
+         * POST METHOD for creating a new User
+         * @return ok type of user 
+         */
+
         [HttpPost("CreateUser")]
         public IActionResult CreateUser([FromBody] UserTable model)
         {
@@ -39,13 +62,22 @@ namespace projectapi.Controllers
             }
             return Ok(user);
         }
+
+        /**
+         * GET METHOD for getting all Users
+         * @ return JSON 
+         */
+
         [HttpGet("GetAll")]
         public JsonResult GetAllUsers()
         {
             var users = _userRepo.GetAllUsers();
             return new JsonResult(users);
         }
-        //get a single user
+
+       
+        // GET METHOD for getting a single user using id 
+
         [HttpGet("GetUser/{id:int}")]
         public IActionResult GetUser([FromRoute] int id)
         {
@@ -56,7 +88,9 @@ namespace projectapi.Controllers
             }
             return BadRequest("User Not Found");
         }
-        //add a single user
+
+        // POST METHOD for adding a single user
+        
         [HttpPost("AddUser")]
         public IActionResult AddUser([FromBody] UserTable userTable)
         {
@@ -68,7 +102,9 @@ namespace projectapi.Controllers
             return Ok(user);
 
         }
-        //updating a user
+
+        // PUT METHOD for updating a single user 
+        
         [HttpPut("UpdateUser/{id:int}")]
         public IActionResult UpdateUser([FromRoute] int id, [FromBody] UserTable userTable)
         {
@@ -79,7 +115,9 @@ namespace projectapi.Controllers
             }
             return NotFound("User Not Found");
         }
-        //deleting a user
+
+        // DELETE METHOD for deleting a user
+
         [HttpDelete("Delete/{id:int}")]
         public IActionResult DeleteUser([FromRoute] int id)
         {
