@@ -90,5 +90,21 @@ namespace projectapi.Repository
             return _db.UserAccountTable.Where(x => x.Account_ID == id).FirstOrDefault();
         }
 
+        public List<UserAccountTable> GetAllAccByStatus(string status)
+        {
+            var result = _db.UserAccountTable
+                .Include("UserLoan")
+                .Include("UserTable")
+                .Where(x => x.Status == status).ToList();
+
+            foreach (var res in result)
+            {
+                res.UserLoan = GetUserLoan(res.UserLoan.ID);
+            }
+
+            return result;
+        }
+
+     
     }
 }

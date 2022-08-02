@@ -20,5 +20,6 @@ namespace projectapi.Repository
         List< UserAccountTable> GetAllAcc();
 
         public UserAccountTable GetUserLoanByAccount(string id);
+        List<UserAccountTable> GetAllAccByStatus(string status);
     }
 }

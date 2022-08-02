@@ -96,6 +96,18 @@ namespace projectapi.Controllers
             var accs = _repo.GetAllAcc();
             return new JsonResult(accs);
         }
+
+
+        [HttpGet("GetAllAccByStatus/{status}")]
+        public JsonResult GetAllAccByStatus([FromRoute] string status)
+        {
+            var accs = _repo.GetAllAccByStatus(status);
+            return new JsonResult(accs);
+        }
+
+
+
+
         [HttpPut("UpdateAccount/{id:int}")]
         public IActionResult UpdateAcount([FromRoute] int id, [FromBody] UserAccountTable userAccountTable)
         {
